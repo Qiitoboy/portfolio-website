@@ -19,7 +19,8 @@ import {
   GraduationCap,
   Sun,
   Moon,
-  Download
+  Download,
+  Phone
 } from 'lucide-react'
 
 // Custom SVG Brand Icons since Lucide v1+ does not bundle them
@@ -882,9 +883,9 @@ function App() {
 
                   <div className="flex items-center space-x-3.5 text-slate-700 dark:text-slate-300">
                     <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-650 dark:text-emerald-400">
-                      <Check className="w-4 h-4" />
+                      <Phone className="w-4 h-4" />
                     </div>
-                    <span>Available globally</span>
+                    <a href="tel:+233598183935" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">+233 598183935</a>
                   </div>
                 </div>
               </div>
