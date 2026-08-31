@@ -19,8 +19,7 @@ import {
   GraduationCap,
   Sun,
   Moon,
-  Download,
-  Phone
+  Download
 } from 'lucide-react'
 
 // Custom SVG Brand Icons since Lucide v1+ does not bundle them
@@ -73,7 +72,7 @@ function App() {
   const [activeSection, setActiveSection] = useState('hero')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  
+
   // Interactive Project Filter state
   const [projectFilter, setProjectFilter] = useState('all')
 
@@ -137,12 +136,12 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!formState.name || !formState.email || !formState.message) return
-    
+
     setIsSending(true)
     try {
       const response = await fetch("https://formsubmit.co/ajax/ransfordtakyi149@gmail.com", {
         method: "POST",
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
@@ -153,7 +152,7 @@ function App() {
           _subject: `New Portfolio Message from ${formState.name}`
         })
       })
-      
+
       if (response.ok) {
         setIsSubmitted(true)
         setFormState({ name: '', email: '', message: '' })
@@ -202,6 +201,7 @@ function App() {
         description: 'Designed enterprise networking solutions including switching, routing, and WLAN architectures.',
         tags: ['Networking', 'Switching', 'Routing'],
         imageGradient: 'from-purple-900 via-indigo-950 to-blue-900',
+        thumbnail: '/thumbnails/enterprise-network.png',
         liveUrl: '#',
         githubUrl: '#'
       },
@@ -212,6 +212,7 @@ function App() {
         description: 'Built infrastructure proposals for compute, storage, and backup systems.',
         tags: ['Data Center', 'Storage', 'Backup'],
         imageGradient: 'from-cyan-900 via-teal-950 to-emerald-900',
+        thumbnail: '/thumbnails/data-center.png',
         liveUrl: '#',
         githubUrl: '#'
       },
@@ -222,38 +223,20 @@ function App() {
         description: 'Movie discovery app using React and external APIs.',
         tags: ['React', 'API', 'UI'],
         imageGradient: 'from-rose-900 via-red-950 to-orange-900',
+        thumbnail: '/thumbnails/movie-app.png',
         liveUrl: 'https://react-movie-app-self-sigma.vercel.app/',
         githubUrl: 'https://github.com/Qiitoboy/REACT-MOVIE-APP'
       },
       {
-        id: 4,
-        title: 'Inventory Dashboard',
+        id: 7,
+        title: 'Prom Autos Full Stack',
         category: 'frontend',
-        description: 'Inventory system dashboard built with React.',
-        tags: ['React', 'Dashboard'],
-        imageGradient: 'from-violet-900 via-fuchsia-950 to-pink-900',
-        liveUrl: '#',
-        githubUrl: '#'
-      },
-      {
-        id: 5,
-        title: 'Forex Market Analysis',
-        category: 'trading',
-        description: 'Technical and fundamental analysis of forex markets.',
-        tags: ['Forex', 'Liquidity', 'Price Action'],
-        imageGradient: 'from-amber-900 via-stone-950 to-yellow-900',
-        liveUrl: '#',
-        githubUrl: '#'
-      },
-      {
-        id: 6,
-        title: 'Trading Strategy Journal',
-        category: 'trading',
-        description: 'Personal trading journal and strategy tracking system.',
-        tags: ['Trading', 'Risk Management'],
-        imageGradient: 'from-emerald-900 via-zinc-950 to-teal-900',
-        liveUrl: '#',
-        githubUrl: '#'
+        description: 'Full-stack auto dealership platform with inventory management, parts catalog, and customer leads system.',
+        tags: ['React', 'Django', 'Full Stack'],
+        imageGradient: 'from-red-900 via-slate-950 to-zinc-900',
+        thumbnail: '/thumbnails/prom-autos.png',
+        liveUrl: 'https://prom-autos.vercel.app/',
+        githubUrl: 'https://github.com/Qiitoboy/PROM-AUTOS'
       }
     ]
   }
@@ -308,21 +291,20 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#090d16] text-slate-800 dark:text-slate-100 selection:bg-purple-500 selection:text-white relative overflow-x-hidden transition-colors duration-300">
-      
+
       {/* Visual background lights */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-500/5 dark:bg-purple-900/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
       <div className="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] bg-blue-500/5 dark:bg-blue-900/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
       <div className="absolute top-[40%] left-[20%] w-[30%] h-[30%] bg-indigo-500/3 dark:bg-indigo-900/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       {/* Navigation Header */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-nav py-4 shadow-lg shadow-black/5 dark:shadow-black/20' : 'bg-transparent py-6'
-      }`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-4 shadow-lg shadow-black/5 dark:shadow-black/20' : 'bg-transparent py-6'
+        }`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          
+
           {/* Logo */}
-          <button 
-            onClick={() => scrollTo('hero')} 
+          <button
+            onClick={() => scrollTo('hero')}
             className="flex items-center space-x-2 font-bold text-xl tracking-tight cursor-pointer group"
           >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center text-white font-mono shadow-md group-hover:scale-105 transition-transform duration-300">
@@ -339,11 +321,10 @@ function App() {
               <button
                 key={section}
                 onClick={() => scrollTo(section)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 capitalize cursor-pointer ${
-                  activeSection === section
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 capitalize cursor-pointer ${activeSection === section
                     ? 'text-purple-600 dark:text-white bg-purple-500/5 dark:bg-purple-500/10 border border-purple-500/20'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800/20 border border-transparent'
-                }`}
+                  }`}
               >
                 {section}
               </button>
@@ -352,7 +333,7 @@ function App() {
 
           {/* Theme Toggler & Socials & Hire Action Button */}
           <div className="hidden md:flex items-center space-x-4">
-            
+
             {/* Theme Toggle Button */}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -362,23 +343,23 @@ function App() {
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            <a 
-              href="https://github.com/Qiitoboy" 
-              target="_blank" 
-              rel="noreferrer" 
+            <a
+              href="https://github.com/Qiitoboy"
+              target="_blank"
+              rel="noreferrer"
               className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
             >
               <GithubIcon className="w-5 h-5" />
             </a>
-            <a 
-              href="https://www.linkedin.com/in/ransford-oduro-33a548277/" 
-              target="_blank" 
-              rel="noreferrer" 
+            <a
+              href="https://www.linkedin.com/in/ransford-oduro-33a548277/"
+              target="_blank"
+              rel="noreferrer"
               className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
             >
               <LinkedinIcon className="w-5 h-5" />
             </a>
-            <button 
+            <button
               onClick={() => scrollTo('contact')}
               className="px-5 py-2.5 rounded-full text-sm font-medium bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold transition-all duration-300 shadow-lg shadow-purple-500/15 dark:shadow-purple-500/25 hover:shadow-purple-500/30 dark:hover:shadow-purple-500/40 hover:-translate-y-0.5"
             >
@@ -388,7 +369,7 @@ function App() {
 
           {/* Mobile Menu Toggle Row */}
           <div className="flex items-center space-x-2 md:hidden">
-            
+
             {/* Mobile Theme Toggle */}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -415,11 +396,10 @@ function App() {
               <button
                 key={section}
                 onClick={() => scrollTo(section)}
-                className={`py-2 px-4 rounded-lg text-left font-medium capitalize text-sm ${
-                  activeSection === section
+                className={`py-2 px-4 rounded-lg text-left font-medium capitalize text-sm ${activeSection === section
                     ? 'text-purple-600 dark:text-purple-400 bg-purple-500/10'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/30'
-                }`}
+                  }`}
               >
                 {section}
               </button>
@@ -437,7 +417,7 @@ function App() {
                 </a>
               </div>
             </div>
-            <button 
+            <button
               onClick={() => scrollTo('contact')}
               className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 text-white font-medium text-center"
             >
@@ -450,7 +430,7 @@ function App() {
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center pt-24 pb-12 px-6">
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Left Text Column */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-left">
             <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-mono font-semibold tracking-wider uppercase w-fit">
@@ -470,15 +450,15 @@ function App() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <button 
+              <button
                 onClick={() => scrollTo('projects')}
                 className="px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold flex items-center justify-center space-x-2.5 transition-all duration-300 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/35 hover:-translate-y-0.5 cursor-pointer"
               >
                 <span>View Projects</span>
                 <Code className="w-4 h-4" />
               </button>
-              <a 
-                href="/resume.pdf" 
+              <a
+                href="/resume.pdf"
                 download="Ransford_Takyi_CV.pdf"
                 className="px-8 py-4 rounded-full bg-white dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-300 dark:border-slate-700/40 hover:border-slate-400 dark:hover:border-slate-600 flex items-center justify-center space-x-2.5 transition-all duration-300 cursor-pointer"
               >
@@ -501,10 +481,10 @@ function App() {
 
           {/* Right Column: Beautiful Interactive Terminal Frame */}
           <div className="lg:col-span-5 relative w-full flex justify-center items-center">
-            
+
             {/* Background glowing shape */}
             <div className="absolute w-72 h-72 bg-gradient-to-tr from-purple-500 to-blue-500 rounded-full blur-[80px] opacity-15 dark:opacity-25 animate-float pointer-events-none"></div>
-            
+
             <div className="w-full max-w-md glass-panel rounded-2xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800/80 shadow-purple-500/5 relative z-10 animate-float">
               {/* Window Bar */}
               <div className="bg-slate-100 dark:bg-[#0b0f19] px-4 py-3 border-b border-slate-200 dark:border-slate-800/60 flex items-center justify-between">
@@ -527,7 +507,7 @@ function App() {
                   <span className="text-emerald-400">ransford@takyi-dev:~$</span>
                   <span className="text-slate-100">npx whoami</span>
                 </div>
-                
+
                 <div className="text-slate-300 border-l-2 border-purple-500/40 pl-3 py-1 mb-4 space-y-1">
                   <p className="font-semibold text-slate-100">{developerInfo.name}</p>
                   <p className="text-purple-400/90">{developerInfo.title}</p>
@@ -557,7 +537,7 @@ function App() {
       {/* About Section */}
       <section id="about" className="py-24 px-6 border-t border-slate-200 dark:border-slate-900 bg-slate-100/50 dark:bg-[#070a11]">
         <div className="max-w-7xl mx-auto">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-xs font-mono text-purple-600 dark:text-purple-400 uppercase tracking-widest mb-3">ABOUT ME</h2>
             <p className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-sans">
@@ -566,7 +546,7 @@ function App() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-            
+
             {/* Left Bio and Stats */}
             <div className="lg:col-span-6 flex flex-col justify-between text-left space-y-6">
               <div className="space-y-4">
@@ -602,7 +582,7 @@ function App() {
             {/* Right Interactive Dashboard */}
             <div className="lg:col-span-6 flex flex-col">
               <div className="w-full h-full glass-panel rounded-2xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col min-h-[360px]">
-                
+
                 {/* Navigation Tabs */}
                 <div className="bg-slate-100 dark:bg-[#0b0f19] px-4 pt-3 flex border-b border-slate-200 dark:border-slate-800/60 justify-between items-end">
                   <div className="flex space-x-1">
@@ -616,11 +596,10 @@ function App() {
                         <button
                           key={tab.id}
                           onClick={() => setTerminalTab(tab.id)}
-                          className={`px-4 py-2 text-xs font-mono rounded-t-lg flex items-center space-x-1.5 border-t border-x transition-colors cursor-pointer ${
-                            terminalTab === tab.id
+                          className={`px-4 py-2 text-xs font-mono rounded-t-lg flex items-center space-x-1.5 border-t border-x transition-colors cursor-pointer ${terminalTab === tab.id
                               ? 'bg-slate-50 dark:bg-[#080b12] text-purple-600 dark:text-purple-400 border-slate-200 dark:border-slate-800'
                               : 'bg-transparent text-slate-400 dark:text-slate-500 border-transparent hover:text-slate-600 dark:hover:text-slate-300'
-                          }`}
+                            }`}
                         >
                           <Icon className="w-3.5 h-3.5" />
                           <span>{tab.label}</span>
@@ -628,7 +607,7 @@ function App() {
                       )
                     })}
                   </div>
-                  
+
                   {/* Status Circle Indicators */}
                   <div className="flex space-x-1 pb-3 pr-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-800"></div>
@@ -652,7 +631,7 @@ function App() {
       {/* Skills Section */}
       <section id="skills" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-xs font-mono text-purple-600 dark:text-purple-400 uppercase tracking-widest mb-3">TECH & SKILLS STACK</h2>
             <p className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-sans">
@@ -661,7 +640,7 @@ function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
+
             {/* Frontend Column */}
             <div className="glass-panel p-8 rounded-2xl border border-slate-200 dark:border-slate-800/80 glow-card hover:-translate-y-1 transition-transform duration-300 text-left">
               <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-6">
@@ -676,8 +655,8 @@ function App() {
                       <span className="text-slate-400 dark:text-slate-500">{skill.level}%</span>
                     </div>
                     <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-900 rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000`} 
+                      <div
+                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000`}
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>
@@ -700,8 +679,8 @@ function App() {
                       <span className="text-slate-400 dark:text-slate-500">{skill.level}%</span>
                     </div>
                     <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-900 rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000`} 
+                      <div
+                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000`}
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>
@@ -724,8 +703,8 @@ function App() {
                       <span className="text-slate-400 dark:text-slate-500">{skill.level}%</span>
                     </div>
                     <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-900 rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000`} 
+                      <div
+                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000`}
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>
@@ -741,7 +720,7 @@ function App() {
       {/* Projects Section */}
       <section id="projects" className="py-24 px-6 border-t border-slate-200 dark:border-slate-900 bg-slate-100/50 dark:bg-[#070a11]">
         <div className="max-w-7xl mx-auto">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-xs font-mono text-purple-600 dark:text-purple-400 uppercase tracking-widest mb-3">WORK & PROJECTS</h2>
             <p className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-sans">
@@ -754,17 +733,15 @@ function App() {
             {[
               { id: 'all', label: 'All Projects' },
               { id: 'enterprise', label: 'Enterprise Solutions' },
-              { id: 'frontend', label: 'Frontend Dev' },
-              { id: 'trading', label: 'Forex Trading' }
+              { id: 'frontend', label: 'Digital Builds' }
             ].map((filter) => (
               <button
                 key={filter.id}
                 onClick={() => setProjectFilter(filter.id)}
-                className={`px-5 py-2 rounded-full text-xs font-mono font-medium transition-all duration-300 cursor-pointer ${
-                  projectFilter === filter.id
+                className={`px-5 py-2 rounded-full text-xs font-mono font-medium transition-all duration-300 cursor-pointer ${projectFilter === filter.id
                     ? 'bg-purple-500 text-white shadow-lg shadow-purple-500/25'
                     : 'bg-white dark:bg-slate-800/40 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-700/30'
-                }`}
+                  }`}
               >
                 {filter.label}
               </button>
@@ -776,36 +753,40 @@ function App() {
             {developerInfo.projects
               .filter((p) => projectFilter === 'all' || p.category === projectFilter)
               .map((project) => (
-                <div 
+                <div
                   key={project.id}
                   className="group bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800/70 rounded-2xl overflow-hidden shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full hover:border-slate-300 dark:hover:border-slate-700"
                 >
-                  {/* Decorative Project Image Panel */}
-                  <div className={`h-48 bg-gradient-to-tr ${project.imageGradient} p-6 flex flex-col justify-between relative`}>
-                    <div className="absolute inset-0 bg-slate-900/10 dark:bg-[#090d16]/30 backdrop-blur-[1px]"></div>
-                    <div className="flex justify-between items-start relative z-10 w-full">
-                      <span className="text-[10px] font-mono tracking-widest font-bold uppercase bg-slate-900/80 dark:bg-[#090d16]/80 text-purple-400 border border-purple-500/20 px-2 py-0.5 rounded-full">
-                        {project.category}
-                      </span>
-                      <div className="flex space-x-2">
-                        <a 
-                          href={project.githubUrl} 
-                          className="p-1.5 rounded-lg bg-slate-900/80 dark:bg-[#090d16]/80 hover:bg-slate-900 dark:hover:bg-[#090d16] text-slate-300 hover:text-white transition-colors"
-                        >
-                          <GithubIcon className="w-4 h-4" />
-                        </a>
-                        <a 
-                          href={project.liveUrl} 
-                          className="p-1.5 rounded-lg bg-slate-900/80 dark:bg-[#090d16]/80 hover:bg-slate-900 dark:hover:bg-[#090d16] text-slate-300 hover:text-white transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
+                  {/* Project Thumbnail Image Panel */}
+                  <div className={`h-48 bg-gradient-to-tr ${project.imageGradient} relative overflow-hidden`}>
+                    {project.thumbnail && (
+                      <img
+                        src={project.thumbnail}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+                    <div className="absolute inset-0 p-6 flex flex-col justify-between">
+                      <div className="flex justify-between items-start w-full">
+                        <span className="text-[10px] font-mono tracking-widest font-bold uppercase bg-slate-900/80 dark:bg-[#090d16]/80 text-purple-400 border border-purple-500/20 px-2 py-0.5 rounded-full backdrop-blur-sm">
+                          {project.category}
+                        </span>
+                        <div className="flex space-x-2">
+                          <a
+                            href={project.githubUrl}
+                            className="p-1.5 rounded-lg bg-slate-900/80 dark:bg-[#090d16]/80 hover:bg-slate-900 dark:hover:bg-[#090d16] text-slate-300 hover:text-white transition-colors backdrop-blur-sm"
+                          >
+                            <GithubIcon className="w-4 h-4" />
+                          </a>
+                          <a
+                            href={project.liveUrl}
+                            className="p-1.5 rounded-lg bg-slate-900/80 dark:bg-[#090d16]/80 hover:bg-slate-900 dark:hover:bg-[#090d16] text-slate-300 hover:text-white transition-colors backdrop-blur-sm"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                    
-                    {/* Glowing Accent */}
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white relative z-10 shadow-lg backdrop-blur-sm self-start mt-4">
-                      <Code className="w-5 h-5" />
                     </div>
                   </div>
 
@@ -813,9 +794,9 @@ function App() {
                   <div className="p-6 flex-grow flex flex-col justify-between text-left space-y-4">
                     <div className="space-y-2">
                       <h4 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-purple-650 dark:group-hover:text-purple-400 transition-colors font-sans">
-                        <a 
-                          href={project.liveUrl} 
-                          target={project.liveUrl !== '#' ? "_blank" : undefined} 
+                        <a
+                          href={project.liveUrl}
+                          target={project.liveUrl !== '#' ? "_blank" : undefined}
                           rel={project.liveUrl !== '#' ? "noreferrer" : undefined}
                           className="hover:underline cursor-pointer"
                         >
@@ -846,7 +827,7 @@ function App() {
       {/* Contact Section */}
       <section id="contact" className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-xs font-mono text-purple-600 dark:text-purple-400 uppercase tracking-widest mb-3">CONTACT</h2>
             <p className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-sans">
@@ -855,10 +836,10 @@ function App() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-            
+
             {/* Left Column: Direct info & social links */}
             <div className="lg:col-span-5 flex flex-col justify-between text-left space-y-8">
-              
+
               <div className="space-y-6">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white font-sans">Get in Touch</h3>
                 <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-md">
@@ -883,9 +864,9 @@ function App() {
 
                   <div className="flex items-center space-x-3.5 text-slate-700 dark:text-slate-300">
                     <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-650 dark:text-emerald-400">
-                      <Phone className="w-4 h-4" />
+                      <Check className="w-4 h-4" />
                     </div>
-                    <a href="tel:+233598183935" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">+233 598183935</a>
+                    <span>Available globally</span>
                   </div>
                 </div>
               </div>
@@ -920,11 +901,11 @@ function App() {
 
             {/* Right Column: Glassmorphic Contact Form */}
             <div className="lg:col-span-7">
-              <form 
+              <form
                 onSubmit={handleSubmit}
                 className="w-full glass-panel p-8 rounded-2xl border border-slate-200 dark:border-slate-800/80 text-left space-y-6 shadow-2xl relative"
               >
-                
+
                 {/* Full-size submission overlay for premium UX */}
                 {isSubmitted && (
                   <div className="absolute inset-0 bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center space-y-4 animate-fade-in z-20 px-6 text-center">
@@ -941,8 +922,8 @@ function App() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Your Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       id="name"
                       required
                       placeholder="e.g. Jean Doe"
@@ -953,8 +934,8 @@ function App() {
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Your Email</label>
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       id="email"
                       required
                       placeholder="e.g. jean@company.com"
@@ -967,7 +948,7 @@ function App() {
 
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Your Transmission</label>
-                  <textarea 
+                  <textarea
                     id="message"
                     rows="5"
                     required
@@ -978,7 +959,7 @@ function App() {
                   ></textarea>
                 </div>
 
-                <button 
+                <button
                   type="submit"
                   disabled={isSending}
                   className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold flex items-center justify-center space-x-2 transition-all duration-300 disabled:opacity-50 cursor-pointer shadow-lg shadow-purple-500/15 hover:shadow-purple-500/25"
@@ -1002,7 +983,7 @@ function App() {
       {/* Footer */}
       <footer className="py-12 px-6 border-t border-slate-200 dark:border-slate-950 bg-slate-100 dark:bg-[#06080e] relative z-10 text-center text-slate-500 text-xs sm:text-sm">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center space-y-6 sm:space-y-0">
-          
+
           <div className="flex items-center space-x-2">
             <span className="font-mono text-purple-650 dark:text-purple-400 font-semibold">&lt;/&gt;</span>
             <span className="text-slate-700 dark:text-slate-400 font-medium">{developerInfo.name}</span>
